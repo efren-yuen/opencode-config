@@ -1,0 +1,166 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "model": "opencode-go/glm-5.2",
+  "small_model": "opencode-go/deepseek-v4-flash",
+  "lsp": true,
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest",
+    "@mohak34/opencode-notifier@latest",
+    "opencode-nvim",
+    "opencode-nvim-editor-context"
+  ],
+  "mcp": {
+    "tavily": {
+      "type": "local",
+      "command": ["npx", "-y", "tavily-mcp"],
+      "timeout": 30000,
+      "environment": {
+        "TAVILY_API_KEY": "{env:TAVILY_API_KEY}"
+      }
+    },
+    "dbhub": {
+      "type": "local",
+      "command": ["npx", "-y", "@bytebase/dbhub@latest", "--transport", "stdio", "--dsn", "mysql://root:root@127.0.0.1:3306/sys"],
+      "timeout": 30000,
+      "enabled": false
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@executeautomation/playwright-mcp-server"],
+      "timeout": 60000,
+      "enabled": false
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "timeout": 30000,
+      "enabled": false,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_TOKEN}"
+      }
+    },
+    "git": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-git"],
+      "timeout": 30000,
+      "enabled": false
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "timeout": 30000,
+      "enabled": false
+    },
+    "redis": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-redis"],
+      "timeout": 30000,
+      "enabled": false,
+      "environment": {
+        "REDIS_URL": "redis://127.0.0.1:6379"
+      }
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "timeout": 30000,
+      "enabled": false,
+      "environment": {
+        "MEMORY_FILE_PATH": "/home/efren/.config/opencode/memory.json"
+      }
+    },
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp"],
+      "enabled": false
+    },
+    "cbm": {
+      "type": "local",
+      "command": ["codebase-memory-mcp"],
+      "enabled": true
+    },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp@latest"],
+      "timeout": 30000,
+      "enabled": true
+    }
+  },
+  "permission": {
+    "*": "ask",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "cbm_search_graph": "allow",
+    "cbm_trace_call_path": "allow",
+    "cbm_query_graph": "allow",
+    "cbm_get_code_snippet": "allow",
+    "cbm_search_code": "allow",
+    "cbm_get_graph_schema": "allow",
+    "cbm_get_architecture": "allow",
+    "cbm_semantic_query": "allow",
+    "cbm_detect_changes": "allow",
+    "cbm_list_projects": "allow",
+    "cbm_index_status": "allow",
+    "cbm_index_repository": "allow",
+    "cbm_delete_project": "ask",
+    "cbm_ingest_traces": "ask",
+    "cbm_manage_adr": "ask",
+    "context7_resolve_library_id": "allow",
+    "context7_query_docs": "allow",
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "cat *": "allow",
+      "grep *": "allow",
+      "find *": "allow",
+      "rg *": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      
+      "rm -rf *": "deny",
+      "sudo *": "deny",
+      "chmod *": "ask",
+      "chown *": "ask"
+    }
+  },
+  "agent": {
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "plan": {
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "build": {
+      "temperature": 0,
+      "permission": {
+        "skill": {
+          "grill-with-docs": "allow",
+          "domain-modeling": "allow"
+        },
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "edit": "allow",
+        "bash": {
+          "*": "allow",
+          "git push*": "ask",
+          "git push *": "ask",
+          "rm -rf *": "deny",
+          "sudo *": "deny",
+          "chmod *": "ask",
+          "chown *": "ask"
+        }
+      }
+    }
+  }
+}

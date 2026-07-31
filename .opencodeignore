@@ -1,0 +1,38 @@
+# ===== 通用构建产物 =====
+
+node_modules/
+target/
+dist/
+build/
+out/
+
+# ===== IDE =====
+
+.idea/
+.vscode/
+*.iml
+
+# ===== 日志 =====
+
+*.log
+logs/
+
+# ===== 临时文件 =====
+
+tmp/
+temp/
+.cache/
+
+# ===== 前端缓存 =====
+
+.npm/
+.pnpm-store/
+
+# ===== Java编译 =====
+
+*.class
+
+# ===== 系统文件 =====
+
+.DS_Store
+Thumbs.db
