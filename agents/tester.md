@@ -5,21 +5,37 @@ model: opencode-go/qwen3.7-plus
 temperature: 0
 permission:
   edit: allow
+  task:
+    "*": "deny"
   bash:
     "*": ask
-    "mvn *": allow
-    "gradle *": allow
-    "npm *": allow
-    "npx *": allow
-    "pnpm *": allow
-    "yarn *": allow
+    "mvn *test*": allow
+    "mvn verify*": allow
+    "gradle *test*": allow
+    "gradle verify*": allow
+    "npm test*": allow
+    "npm run lint*": allow
+    "npm run typecheck*": allow
+    "npm run build*": allow
+    "npx jest*": allow
+    "npx vitest*": allow
+    "npx playwright*": allow
+    "npx cypress*": allow
+    "npx ts-node*": allow
+    "pnpm test*": allow
+    "pnpm run lint*": allow
+    "pnpm run typecheck*": allow
+    "pnpm run build*": allow
+    "yarn test*": allow
+    "yarn run lint*": allow
+    "yarn run typecheck*": allow
+    "yarn run build*": allow
     "jest *": allow
     "vitest *": allow
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git push*": deny
-    "git push *": deny
     "rm -rf *": deny
     "sudo *": deny
 ---

@@ -5,7 +5,29 @@ model: opencode-go/kimi-k2.7-code
 temperature: 0.2
 permission:
   edit: deny
-  bash: ask
+  task:
+    "*": "deny"
+  bash:
+    "*": deny
+    "git status*": allow
+    "git diff*": allow
+    "git show*": allow
+    "git log*": allow
+    "ls *": allow
+    "cat *": allow
+    "rg *": allow
+    "mvn test*": allow
+    "gradle test*": allow
+    "npm test*": allow
+    "pnpm test*": allow
+    "yarn test*": allow
+    "pytest*": allow
+    "npm run lint*": allow
+    "npm run typecheck*": allow
+    "tsc*": allow
+    "docker compose config*": allow
+    "bash -n *": allow
+    "shellcheck *": allow
 ---
 
 你是代码审查专家，负责严格审查每一段代码。

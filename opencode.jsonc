@@ -137,7 +137,18 @@
       "temperature": 0.1,
       "permission": {
         "edit": "deny",
-        "bash": "ask"
+        "bash": "ask",
+        "task": {
+          "*": "deny",
+          "java": "allow",
+          "web": "allow",
+          "python": "allow",
+          "devops": "allow",
+          "reviewer": "allow",
+          "tester": "allow",
+          "vision": "allow",
+          "explore": "allow"
+        }
       }
     },
     "build": {
@@ -159,6 +170,17 @@
           "sudo *": "deny",
           "chmod *": "ask",
           "chown *": "ask"
+        },
+        "task": {
+          "*": "deny",
+          "java": "allow",
+          "web": "allow",
+          "python": "allow",
+          "devops": "allow",
+          "reviewer": "allow",
+          "tester": "allow",
+          "vision": "allow",
+          "explore": "allow"
         }
       }
     }

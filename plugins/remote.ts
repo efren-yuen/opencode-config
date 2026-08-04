@@ -39,7 +39,10 @@ export default {
           description:
             "Open a persistent SSH connection to a remote server. Call this when the user says 'ssh <host>' or asks to connect to a server. The host must be defined in ~/.ssh/config.",
           args: {
-            host: z.string().describe("SSH host name from ~/.ssh/config, e.g. 'myHost'"),
+            host: {
+              type: "string",
+              description: "SSH host name from ~/.ssh/config, e.g. 'myHost'",
+            },
           },
           async execute(args, ctx) {
             const host = args.host

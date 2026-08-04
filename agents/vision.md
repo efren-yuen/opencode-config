@@ -5,8 +5,11 @@ model: opencode-go/qwen3.7-plus
 temperature: 0.1
 permission:
   edit: deny
+  task:
+    "*": "deny"
   read: allow
   webfetch: allow
+  bash: deny
 ---
 
 你是图片视觉分析专家，负责识别和分析用户提供的图片内容。
