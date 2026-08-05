@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "plan",
-  "model": "opencode-go/glm-5.2",
-  "small_model": "opencode-go/deepseek-v4-flash",
+  "model": "opencode/deepseek-v4-flash-free",
+  "small_model": "opencode-go/mimo-v2.5",
   "lsp": true,
   "plugin": [
     "@tarquinen/opencode-dcp@latest",

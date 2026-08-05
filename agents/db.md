@@ -3,6 +3,7 @@ description: 数据库操作 agent。负责所有数据库查询、表结构设�
 mode: primary
 model: opencode-go/deepseek-v4-pro
 temperature: 0
+disable: true
 permission:
   edit: deny
   bash:
