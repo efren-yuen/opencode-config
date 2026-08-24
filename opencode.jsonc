@@ -1,20 +1,27 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "plan",
-  "model": "opencode/deepseek-v4-flash-free",
+  "model": "opencode-go/gpt-5.6-luna",
   "small_model": "opencode-go/mimo-v2.5",
   "lsp": true,
   "plugin": [
     "@tarquinen/opencode-dcp@latest",
     "@mohak34/opencode-notifier@latest",
     "opencode-nvim",
-    "opencode-nvim-editor-context"
+    "opencode-nvim-editor-context",
+    "opencode-qoder-auth@latest"
   ],
+  "provider": {
+    "qoder": {
+      "options": {}
+    }
+  },
   "mcp": {
     "tavily": {
       "type": "local",
       "command": ["npx", "-y", "tavily-mcp"],
       "timeout": 30000,
+      "enabled": false,
       "environment": {
         "TAVILY_API_KEY": "{env:TAVILY_API_KEY}"
       }
@@ -135,6 +142,7 @@
     },
     "plan": {
       "temperature": 0.1,
+      "prompt": "全程思考过程必须使用简体中文：包括需求分析、逻辑拆解、方案选择、步骤推导等所有内部推理环节。",
       "permission": {
         "edit": "deny",
         "bash": "ask",

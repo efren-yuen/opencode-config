@@ -59,10 +59,10 @@ Plan mode 分析（Tab 切换，只读，不能改代码）
 专业 subagent 执行（prompt 含 skill 摘要 + context7 文档片段）
     |
     v
-subagent 自检通过后直接调 reviewer（最多 3 轮复审）
+subagent 自检通过后直接调 reviewer（同一变更的 review→修复循环最多 2 轮）
     |
     v
-reviewer 通过 → subagent 返回主 agent（附修改摘要 + 审查结论）
+reviewer 通过 → 代码冻结，修改方禁止再改；subagent 返回主 agent（附修改摘要 + 审查结论）
     |
     v
 主 agent 判断是否调 tester 验证
@@ -152,6 +152,13 @@ subagent 执行需要最新库/框架文档时，主 agent 先用 context7 MCP �
 - 数据库
 - 权限
 - 核心流程
+
+**review→修复循环约束（强制）**：
+
+- 同一变更的 review→修复循环**最多 2 轮**（1 次审查 + 1 次修复后复审），以变更维度计数，不是按 subagent 计数
+- **reviewer 通过后代码冻结**：修改方 subagent 禁止再修改任何代码；发现新问题应开新任务（走完整流程），不得在同任务内"顺手修一下"再要求复审
+- 🔴 级问题修复后必须复审时，**必须用同一 reviewer 的 task_id resume 续接**（保留上下文、只读增量 diff），禁止开新 reviewer session
+- 复审请求必须携带上一轮审查结论，reviewer 只核对增量改动与遗留问题，不重复全量审查
 
 ------------------------------------------------------------------------
 

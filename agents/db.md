@@ -1,7 +1,7 @@
 ---
 description: 数据库操作 agent。负责所有数据库查询、表结构设计、SQL 优化、数据导入导出。支持 dbhub MCP。使用中文输出。
 mode: primary
-model: opencode-go/deepseek-v4-pro
+model: opencode-go/deepseek-v4-flash
 temperature: 0
 disable: true
 permission:
