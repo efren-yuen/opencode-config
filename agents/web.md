@@ -1,8 +1,8 @@
 ---
 description: Web 前端开发 agent。负责所有 Web 前端代码编写。保持组件最小修改，禁止一次修改多个页面。遵循已有代码风格。使用中文输出。
 mode: subagent
-model: opencode-go/gpt-5.6-luna
-variant: high
+model: openai/gpt-5.6-terra
+variant: medium
 temperature: 0
 top_p: 0.2
 steps: 40

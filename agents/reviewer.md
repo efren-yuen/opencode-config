@@ -1,7 +1,7 @@
 ---
 description: 代码审查 agent。审查代码质量、Bug、空指针、事务、安全漏洞、SQL 索引/Explain。使用中文输出。
 mode: subagent
-model: opencode-go/deepseek-v4-flash
+model: opencode-go/gpt-5.6-luna
 temperature: 0.2
 permission:
   edit: deny

@@ -1,8 +1,8 @@
 ---
 description: Java 后端开发 agent。负责所有 Java 代码编写。强制遵循事务、空指针、日志、异常处理、SQL 规范。使用中文输出。
 mode: subagent
-model: opencode-go/gpt-5.6-luna
-variant: high
+model: openai/gpt-5.6-sol
+variant: medium
 temperature: 0
 top_p: 0.2
 steps: 40
